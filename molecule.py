@@ -1,4 +1,5 @@
 import particle
+import numpy as np
 
 class Molecule:
 	'''Stores information about a Molecule consisting of two particles'''
@@ -16,4 +17,6 @@ class Molecule:
 
 	def get_force(self):
 		''' Returns a vector of the force on particle 1'''
-		return (-self.k*self.get_disp1()[0] - self.L0, -self.k*self.get_disp1()[1] - self.L0)
+		dist = np.linalg.norm(self.get_disp1())
+		return self.k*(dist-self.L0)*(self.p2.pos-self.p1.pos)/dist
+		#return (-self.k*self.get_disp1()[0] - self.L0, -self.k*self.get_disp1()[1] - self.L0)

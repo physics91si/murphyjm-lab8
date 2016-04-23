@@ -13,6 +13,7 @@ import matplotlib.animation as animation
 import numpy as np
 import particle
 import molecule
+#importlib.reload(molecule)
 
 initial_p1_mass = 1
 initial_p2_mass = 1
@@ -31,11 +32,11 @@ def init_molecule():
 # TODO: Implement this function
 def time_step(dt, mol):
     """Sets new positions and velocities of the particles attached to mol"""
-    t = 0
-    while i < 100:
-        t_1 = t + dt/2
-        
+    mol.p1.vel = mol.p1.vel + (mol.get_force()/mol.p1.m)*dt
+    mol.p1.pos = mol.p1.pos + mol.p1.vel*dt
 
+    mol.p2.vel = mol.p2.vel + (mol.get_force()/mol.p2.m)*dt
+    mol.p2.pos = mol.p2.pos + mol.p2.vel*dt
 
 #############################################
 # The rest of the file is already implemented
